@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <script>
+    	// 获取url中查询字符串，以对象的形式展示
+    	function getQueryStringArgs() {
+    		let qs = location.search.length > 0 ? location.search.substring(1) : ''
+    		let args = {}
+    		let items = []
+    		let item = null
+    		let name = null
+    		let value = null
+    		if (!qs) {
+    			return args
+    		} else {
+    			items = qs.split('&')
+    		}
+    		for (let i = 0; i < items.length; i++) {
+    			let kv = items[i]
+    			item = kv.split('=')
+    			name = decodeURIComponent(item[0])
+    			value = decodeURIComponent(item[1])
+    			if (name.length) {
+    				args[name] = value
+    			}
+    		}
+    		return args
+    	}
+    	// 刷新页面，传入t可能缓存刷新，f从服务器刷新
+    	function getPageReload(bol) {
+    		if (bol) {
+    			window.location.reload(!!bol)
+    		} else {
+    			window.location.reload()
+    		}
+    	}
+    </script>
+    </body>
+</html>
